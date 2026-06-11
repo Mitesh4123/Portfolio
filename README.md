@@ -53,12 +53,8 @@ git commit -m "initial portfolio"
 git remote add origin https://github.com/yourusername/yourusername.github.io.git
 git push -u origin main
 ```
-Live at → `https://yourusername.github.io`
+Live at → `https://portfolio-git-main-mitesh-thummars-projects.vercel.app/`
 
-### Netlify (drag & drop)
-1. Go to [netlify.com](https://netlify.com)
-2. Drag `index.html` onto the deploy area
-3. Done — live in seconds with a free URL
 
 ### Vercel
 ```bash
@@ -84,8 +80,8 @@ npx vercel deploy
 
 **Update your links** — find and replace in `index.html`:
 ```
-https://linkedin.com  →  your LinkedIn profile URL
-https://github.com    →  your GitHub profile URL
+https://www.linkedin.com/in/mitesh-thummar-840827262/?skipRedirect=true →  your LinkedIn profile URL
+https://github.com/Mitesh4123  →  your GitHub profile URL
 ```
 
 **Add a profile photo** — inside `#hero`, after `.hero-eyebrow`:
@@ -118,5 +114,5 @@ MIT — free to use and adapt with attribution.
 ---
 
 <p align="center">
-  Built by <strong>Mitesh Thummar</strong> · Nagpur, India · 2025
+  Built by <strong>Mitesh Thummar</strong> · Nagpur, India · 2026
 </p>

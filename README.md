@@ -76,24 +76,6 @@ npx vercel deploy
 
 ---
 
-## 🔧 Customisation
-
-**Update your links** — find and replace in `index.html`:
-```
-https://www.linkedin.com/in/mitesh-thummar-840827262/?skipRedirect=true →  your LinkedIn profile URL
-https://github.com/Mitesh4123  →  your GitHub profile URL
-```
-
-**Add a profile photo** — inside `#hero`, after `.hero-eyebrow`:
-```html
-<img src="./photo.jpg" alt="Mitesh Thummar"
-  style="width:80px;height:80px;border-radius:50%;
-         border:2px solid var(--border2);margin-bottom:1.5rem;">
-```
-
-**Add a new project** — copy any `.p-card` block inside `.projects-grid` and update the content.
-
----
 
 ## 📁 File Structure
 

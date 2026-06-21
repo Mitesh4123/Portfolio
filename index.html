@@ -6,312 +6,313 @@
 <title>Mitesh Thummar — Software Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg: #07070a;
-    --surface: #0e0e14;
-    --surface2: #15151e;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.16);
-    --text: #ededf2;
-    --muted: #87869a;
-    --muted2: #56556a;
-    --lime: #c4f042;
-    --lime-dim: rgba(196,240,66,0.12);
-    --violet: #8b7cf6;
-    --violet-dim: rgba(139,124,246,0.12);
-    --mono: 'JetBrains Mono', monospace;
-    --display: 'Space Grotesk', sans-serif;
-    --body: 'Inter', sans-serif;
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text: #f0eff8;
+    --muted: #8b8a9e;
+    --accent: #7c6af7;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --accent4: #fb923c;
+    --glow: rgba(124,106,247,0.18);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: var(--body);
+    font-family: 'DM Sans', sans-serif;
     font-size: 16px;
     line-height: 1.7;
     overflow-x: hidden;
   }
-
+  
+  /* Noise overlay */
   body::before {
     content: '';
     position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 64px 64px;
-    pointer-events: none; z-index: 0; opacity: 0.5;
-    mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 40%, transparent 100%);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.35;
   }
-
-  ::selection { background: var(--lime); color: #07070a; }
-
-  a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--lime);
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  }
-
-  /* ── Nav ── */
+  
+  /* Nav */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 3rem;
-    background: rgba(7,7,10,0.75);
-    backdrop-filter: blur(16px);
+    padding: 1.25rem 3rem;
+    background: rgba(10,10,15,0.8);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    font-family: var(--mono);
-    font-weight: 500; font-size: 0.95rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
     color: var(--text);
     text-decoration: none;
-    letter-spacing: -0.01em;
-    display: flex; align-items: center; gap: 0.5rem;
+    letter-spacing: -0.02em;
   }
-  .nav-logo .dot { width: 7px; height: 7px; background: var(--lime); border-radius: 1px; }
-  .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+  .nav-logo span { color: var(--accent2); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
-    font-size: 0.78rem; font-weight: 500;
+    font-size: 0.85rem; font-weight: 400;
     color: var(--muted); text-decoration: none;
     letter-spacing: 0.04em; text-transform: uppercase;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--lime); }
-  .nav-cta {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--lime);
-    border: 1px solid rgba(196,240,66,0.3);
-    padding: 0.4rem 0.9rem;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--lime-dim); }
-
-  /* ── Hero ── */
+  .nav-links a:hover { color: var(--text); }
+  
+  /* Hero */
   #hero {
     min-height: 100vh;
     display: flex; align-items: center;
     padding: 8rem 3rem 4rem;
     position: relative;
-    z-index: 1;
+    overflow: hidden;
   }
-  .hero-content { max-width: 880px; }
-  .hero-eyebrow {
-    font-family: var(--mono);
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    color: var(--muted);
-    font-size: 0.8rem; font-weight: 400;
-    margin-bottom: 2rem;
-    letter-spacing: 0.02em;
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
   }
-  .hero-eyebrow .blink {
-    width: 7px; height: 7px; background: var(--lime); border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(196,240,66,0.5);
-    animation: ring 1.8s infinite;
+  .orb1 { width: 500px; height: 500px; background: rgba(124,106,247,0.12); top: -100px; right: -100px; }
+  .orb2 { width: 350px; height: 350px; background: rgba(52,211,153,0.07); bottom: 0; left: 10%; }
+  .hero-content { position: relative; z-index: 1; max-width: 850px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(124,106,247,0.1);
+    border: 1px solid rgba(124,106,247,0.25);
+    color: var(--accent2);
+    font-size: 0.78rem; font-weight: 500;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
   }
-  @keyframes ring {
-    0% { box-shadow: 0 0 0 0 rgba(196,240,66,0.5); }
-    70% { box-shadow: 0 0 0 7px rgba(196,240,66,0); }
-    100% { box-shadow: 0 0 0 0 rgba(196,240,66,0); }
-  }
-
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent3); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  
   h1 {
-    font-family: var(--display);
-    font-size: clamp(2.6rem, 6.2vw, 4.6rem);
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.75rem;
-    max-width: 14ch;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 6.5vw, 4.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
   }
-  h1 .accent { color: var(--lime); }
+  h1 .line2 { color: var(--accent2); }
   .hero-sub {
-    font-size: 1.05rem; color: var(--muted);
-    max-width: 560px; line-height: 1.75;
+    font-size: 1.1rem; color: var(--muted);
+    max-width: 650px; line-height: 1.75;
     margin-bottom: 2.5rem;
   }
   .hero-sub strong { color: var(--text); font-weight: 500; }
-  .hero-cta { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 4rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.8rem 1.6rem;
-    border-radius: 6px;
-    font-size: 0.88rem; font-weight: 500;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem; font-weight: 500;
     text-decoration: none; cursor: pointer;
     transition: all 0.2s;
     border: none;
-    font-family: var(--body);
   }
   .btn-primary {
-    background: var(--lime);
-    color: #07070a;
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(124,106,247,0.3);
   }
-  .btn-primary:hover { background: #d4ff5c; transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--accent2); box-shadow: 0 0 40px rgba(167,139,250,0.4); transform: translateY(-1px); }
   .btn-outline {
     background: transparent;
     color: var(--text);
     border: 1px solid var(--border2);
   }
-  .btn-outline:hover { border-color: var(--lime); color: var(--lime); transform: translateY(-1px); }
-
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent2); transform: translateY(-1px); }
+  
   .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: 3rem;
-    padding-top: 2.25rem;
+    display: flex; gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
     border-top: 1px solid var(--border);
   }
   .stat-num {
-    font-family: var(--display);
-    font-size: 1.65rem; font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 700;
     color: var(--text);
   }
-  .stat-num span { color: var(--lime); }
-  .stat-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
-
-  /* ── Sections ── */
-  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
-  .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+  .stat-num span { color: var(--accent2); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  
+  /* Sections */
+  section { 
+    padding: 6rem 3rem; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    /* Fixes anchor scroll clipping under fixed nav bar */
+    scroll-margin-top: 5rem; 
+  }
   .section-label {
-    font-family: var(--mono);
-    font-size: 0.78rem; font-weight: 400;
-    color: var(--lime);
-    letter-spacing: 0.02em;
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
   }
   h2 {
-    font-family: var(--display);
-    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
-    font-weight: 600; letter-spacing: -0.01em;
-    line-height: 1.15;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
   }
-
-  /* ── Skills ── */
-  #skills { padding-top: 0; }
+  
+  /* Skills */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
   }
   .skill-card {
     background: var(--surface);
-    padding: 1.4rem 1.5rem;
-    transition: background 0.2s;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
   }
-  .skill-card:hover { background: var(--surface2); }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
   .skill-card-label {
-    font-family: var(--mono);
-    font-size: 0.68rem; color: var(--muted2); text-transform: uppercase;
-    letter-spacing: 0.08em; margin-bottom: 0.85rem; font-weight: 400;
+    font-size: 0.7rem; color: var(--accent); text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 0.75rem; font-weight: 500;
   }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .skill-tag {
-    font-size: 0.78rem; color: var(--text);
+    font-size: 0.78rem; color: var(--muted);
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 4px; padding: 0.22rem 0.6rem;
+    border-radius: 6px; padding: 0.2rem 0.6rem;
   }
-
-  /* ── Experience ── */
+  
+  /* Experience */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border2);
+  }
   .timeline-item {
-    padding: 2rem 0;
-    border-top: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 2rem;
+    padding-left: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
   }
-  .timeline-item:first-child { border-top: 1px solid var(--border); }
-  .timeline-period {
-    font-family: var(--mono);
-    font-size: 0.78rem; color: var(--muted);
-    padding-top: 0.2rem;
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -5px; top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 12px rgba(124,106,247,0.6);
+  }
+  .timeline-meta {
+    display: flex; align-items: center; gap: 1rem;
+    flex-wrap: wrap; margin-bottom: 0.5rem;
   }
   .timeline-company {
-    font-family: var(--display);
-    font-size: 1.15rem; font-weight: 600; color: var(--text);
-    margin-bottom: 0.2rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--text);
+  }
+  .timeline-period {
+    font-size: 0.78rem; color: var(--muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.65rem; border-radius: 999px;
   }
   .timeline-role {
-    font-size: 0.85rem; color: var(--lime);
-    font-weight: 500; margin-bottom: 1rem;
+    font-size: 0.85rem; color: var(--accent2);
+    font-weight: 500; margin-bottom: 0.75rem;
   }
   .timeline-bullets { list-style: none; }
   .timeline-bullets li {
-    font-size: 0.91rem; color: var(--muted);
-    padding: 0.3rem 0;
-    padding-left: 1.1rem;
+    font-size: 0.9rem; color: var(--muted);
+    padding: 0.25rem 0;
+    padding-left: 1.25rem;
     position: relative;
   }
   .timeline-bullets li::before {
-    content: '';
-    position: absolute; left: 0; top: 0.75rem;
-    width: 5px; height: 5px;
-    background: var(--muted2); border-radius: 50%;
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent); font-size: 0.8rem;
   }
-  @media (max-width: 640px) {
-    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
-  }
-
-  /* ── Projects ── */
+  
+  /* Projects */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
   }
   .project-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 1.75rem;
     display: flex; flex-direction: column;
     transition: border-color 0.25s, transform 0.25s;
+    position: relative; overflow: hidden;
   }
-  .project-card:hover { border-color: rgba(196,240,66,0.35); transform: translateY(-3px); }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: rgba(124,106,247,0.4); transform: translateY(-4px); }
+  .project-card:hover::before { opacity: 1; }
+  
   .project-card--featured {
-    border-color: rgba(196,240,66,0.4);
-    background: linear-gradient(160deg, var(--surface) 0%, rgba(196,240,66,0.04) 100%);
+    border-color: rgba(124,106,247,0.3);
+    background: linear-gradient(160deg, var(--surface) 0%, rgba(124,106,247,0.04) 100%);
     grid-column: 1 / -1;
   }
-  .project-top-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
-  .project-period {
-    font-family: var(--mono);
-    font-size: 0.7rem; color: var(--muted2);
-    flex-shrink: 0;
-  }
   .featured-badge {
-    font-family: var(--mono);
-    font-size: 0.68rem; color: #07070a;
-    background: var(--lime);
-    padding: 0.18rem 0.55rem; border-radius: 3px;
+    font-size: 0.68rem; color: #fff;
+    background: var(--accent);
+    padding: 0.2rem 0.6rem; border-radius: 4px;
     text-transform: uppercase; letter-spacing: 0.04em;
-    margin-bottom: 0.75rem; display: inline-block;
+    margin-bottom: 1rem; display: inline-block;
+    align-self: flex-start;
+    font-weight: 600;
+  }
+  
+  .project-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.1em;
+    margin-bottom: 1rem;
   }
   .project-title {
-    font-family: var(--display);
-    font-size: 1.1rem; font-weight: 600;
-    color: var(--text); margin-bottom: 0.75rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--text); margin-bottom: 0.5rem;
     line-height: 1.3;
+  }
+  .project-period {
+    font-size: 0.72rem; color: var(--muted);
+    margin-bottom: 1rem; opacity: 0.7;
   }
   .project-desc {
     font-size: 0.88rem; color: var(--muted);
-    line-height: 1.7; margin-bottom: 1.25rem;
+    line-height: 1.7; flex: 1; margin-bottom: 1.25rem;
   }
-  .project-card--featured .project-desc { max-width: 65ch; }
+  .project-card--featured .project-desc { max-width: 75ch; }
+  
   .project-links { display: flex; gap: 0.6rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
   .project-link {
-    font-family: var(--mono);
     font-size: 0.76rem;
     color: var(--text);
     border: 1px solid var(--border2);
@@ -321,159 +322,171 @@
     display: inline-flex; align-items: center; gap: 0.4rem;
     transition: all 0.2s;
   }
-  .project-link:hover { border-color: var(--lime); color: var(--lime); }
+  .project-link:hover { border-color: var(--accent); color: var(--accent2); }
+  
   .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
   .project-tag {
     font-size: 0.72rem; font-weight: 500;
-    padding: 0.22rem 0.6rem; border-radius: 4px;
-    background: var(--violet-dim);
-    color: var(--violet);
+    padding: 0.25rem 0.65rem; border-radius: 6px;
+    background: rgba(124,106,247,0.1);
+    color: var(--accent2);
+    border: 1px solid rgba(124,106,247,0.2);
   }
-
-  /* ── Publication ── */
+  
+  /* Publication */
   .pub-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-left: 2px solid var(--lime);
-    border-radius: 10px;
+    border-left: 3px solid var(--accent3);
+    border-radius: 12px;
     padding: 1.75rem 2rem;
   }
   .pub-journal {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--lime); margin-bottom: 0.6rem;
+    font-size: 0.75rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--accent3); margin-bottom: 0.4rem;
   }
   .pub-title {
-    font-family: var(--display);
-    font-size: 1.05rem; font-weight: 600; color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--text);
     line-height: 1.4; margin-bottom: 0.5rem;
   }
   .pub-meta { font-size: 0.82rem; color: var(--muted); }
-  .pub-meta a { color: var(--violet); text-decoration: none; }
+  .pub-meta a { color: var(--accent2); text-decoration: none; font-weight: 500; }
   .pub-meta a:hover { text-decoration: underline; }
-
-  /* ── Education ── */
-  .edu-grid { display: flex; flex-direction: column; }
+  
+  /* Education */
+  .edu-grid { display: grid; gap: 1rem; }
   .edu-card {
-    border-top: 1px solid var(--border);
-    padding: 1.5rem 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 1rem;
+    transition: border-color 0.2s;
   }
-  .edu-card:first-child { border-top: 1px solid var(--border); }
-  .edu-degree { font-family: var(--mono); font-size: 0.72rem; color: var(--violet); margin-bottom: 0.3rem; letter-spacing: 0.02em; }
+  .edu-card:hover { border-color: var(--border2); }
+  .edu-degree { font-size: 0.75rem; color: var(--accent2); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.04em; }
   .edu-school {
-    font-family: var(--display);
-    font-weight: 600; color: var(--text); margin-bottom: 0.2rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; color: var(--text); margin-bottom: 0.2rem;
   }
   .edu-year { font-size: 0.8rem; color: var(--muted); }
   .edu-score {
-    font-family: var(--display);
-    font-size: 1.5rem; font-weight: 600;
-    color: var(--lime); text-align: right;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem; font-weight: 800;
+    color: var(--accent2); text-align: right;
   }
-  .edu-score span { display: block; font-size: 0.68rem; color: var(--muted); font-family: var(--mono); font-weight: 400; margin-top: 0.15rem; }
-
-  /* ── Certs & Leadership ── */
+  .edu-score span { display: block; font-size: 0.7rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+  
+  /* Certs & Leadership */
   .certs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
   }
   .cert-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 1rem 1.25rem;
     font-size: 0.85rem; color: var(--muted);
-    display: flex; gap: 0.65rem; align-items: center;
+    display: flex; gap: 0.6rem; align-items: center;
     transition: border-color 0.2s;
   }
   .cert-card:hover { border-color: var(--border2); color: var(--text); }
-  .cert-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; flex-shrink: 0; }
-
-  /* ── Contact ── */
+  .cert-dot { width: 6px; height: 6px; background: var(--accent3); border-radius: 50%; flex-shrink: 0; }
+  
+  /* Contact */
   #contact {
     text-align: center;
-    padding: 7rem 3rem 5rem;
+    padding: 6rem 3rem 8rem;
+    position: relative; overflow: hidden;
   }
-  #contact .section-label { display: block; text-align: center; margin-bottom: 1rem; }
-  #contact h2 { max-width: 600px; margin: 0 auto 1rem; }
-  #contact p { color: var(--muted); margin-bottom: 2.5rem; max-width: 460px; margin-left: auto; margin-right: auto; }
-  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  #contact .orb3 {
+    position: absolute; width: 600px; height: 300px;
+    background: rgba(124,106,247,0.07);
+    border-radius: 50%; filter: blur(60px);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    pointer-events: none;
+  }
+  #contact h2 { max-width: 600px; margin: 0 auto 1rem; position: relative; z-index: 1; }
+  #contact p { color: var(--muted); margin-bottom: 2.5rem; position: relative; z-index: 1; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
   .contact-link {
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    padding: 0.8rem 1.5rem;
-    border-radius: 7px;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
     background: var(--surface);
     border: 1px solid var(--border2);
     color: var(--text); text-decoration: none;
-    font-size: 0.88rem;
-    font-family: var(--mono);
+    font-size: 0.9rem;
     transition: all 0.2s;
   }
-  .contact-link:hover { border-color: var(--lime); color: var(--lime); transform: translateY(-2px); }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent2); transform: translateY(-2px); }
   .contact-link--primary {
-    background: var(--lime); color: #07070a; border-color: var(--lime);
+    background: var(--accent); color: #fff; border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(124,106,247,0.25);
   }
-  .contact-link--primary:hover { background: #d4ff5c; color: #07070a; }
-
-  /* ── Footer ── */
+  .contact-link--primary:hover { background: var(--accent2); color: #fff; }
+  
+  /* Footer */
   footer {
     text-align: center;
     padding: 2rem;
     border-top: 1px solid var(--border);
-    font-size: 0.78rem; color: var(--muted2);
-    font-family: var(--mono);
+    font-size: 0.8rem; color: var(--muted);
   }
-
+  
+  /* Fade-in animation */
   .fade-up {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .fade-up.visible { opacity: 1; transform: none; }
-
+  
   @media (max-width: 700px) {
     nav { padding: 1rem 1.25rem; }
-    .nav-links { display: none; }
+    .nav-links { gap: 1.25rem; }
     section { padding: 4rem 1.25rem; }
     #hero { padding: 7rem 1.25rem 3rem; }
-    .hero-stats { grid-template-columns: repeat(2, auto); gap: 1.5rem 2.5rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
     .project-card--featured { grid-column: auto; }
   }
 </style>
 </head>
 <body>
-
+ 
 <nav>
-  <a href="#hero" class="nav-logo"><span class="dot"></span>mitesh.dev</a>
+  <a href="#hero" class="nav-logo">Mitesh<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Work</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:miteshthummar2004@gmail.com" class="nav-cta">say hello →</a>
 </nav>
-
-<!-- HERO -->
+ 
 <section id="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow"><span class="blink"></span>open to internships &amp; full-time roles · 2026</div>
+    <div class="hero-badge">Available for opportunities · 2026</div>
     <h1>
-      I build backend systems and the accessible interfaces <span class="accent">people forget are hard.</span>
+      Building backend systems<br>
+      <span class="line2">and inclusive interfaces.</span>
     </h1>
     <p class="hero-sub">
-      I'm Mitesh Thummar, a software engineer who ships secure fintech APIs and inclusive mobile experiences. Most recently: an OTP-verified digital wallet with atomic transfers, live in production — and an accessibility-first UPI app published as research.
+      I'm Mitesh Thummar, a software engineer who ships secure fintech APIs and inclusive mobile experiences. Most recently, I developed an OTP-verified digital wallet architecture with atomic transfers alongside an accessibility-first UPI platform published as formal research.
     </p>
     <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View projects ↓</a>
-      <a href="https://github.com/Mitesh4123" target="_blank" rel="noopener" class="btn btn-outline">GitHub ↗</a>
+      <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+      <a href="mailto:miteshthummar2004@gmail.com" class="btn btn-outline">Get in Touch</a>
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-num"><span>8.67</span></div>
+        <div class="stat-num">8.78</div>
         <div class="stat-label">CGPA / 10</div>
       </div>
       <div>
@@ -491,13 +504,10 @@
     </div>
   </div>
 </section>
-
-<!-- SKILLS -->
+ 
 <section id="skills">
-  <div class="section-head">
-    <h2>Technical skills</h2>
-    <div class="section-label">// toolkit</div>
-  </div>
+  <div class="section-label">Toolkit</div>
+  <h2>Technical Skills</h2>
   <div class="skills-grid fade-up">
     <div class="skill-card">
       <div class="skill-card-label">Languages</div>
@@ -541,66 +551,59 @@
         <span class="skill-tag">Swagger</span>
         <span class="skill-tag">Render</span>
         <span class="skill-tag">Vercel</span>
-        <span class="skill-tag">Figma</span>
         <span class="skill-tag">Android Studio</span>
+        <span class="skill-tag">Figma</span>
       </div>
     </div>
   </div>
 </section>
-
-<!-- EXPERIENCE -->
+ 
 <section id="experience">
-  <div class="section-head">
-    <h2>Work experience</h2>
-    <div class="section-label">// career</div>
-  </div>
+  <div class="section-label">Career</div>
+  <h2>Work Experience</h2>
   <div class="timeline">
-
+ 
     <div class="timeline-item fade-up">
-      <div class="timeline-period">Jan 2025 — Present</div>
-      <div>
-        <div class="timeline-company">Trust Fintech Ltd</div>
-        <div class="timeline-role">Software Engineer Intern</div>
-        <ul class="timeline-bullets">
-          <li>Built a voice-based UPI application for secure digital payments for visually impaired users.</li>
-          <li>Designed accessible Braille-inspired XML layouts with voice command features on Android.</li>
-          <li>Integrated REST APIs for authentication, transaction processing, and real-time data handling.</li>
-          <li>Conducted accessibility testing using screen readers and low-vision simulators.</li>
-        </ul>
+      <div class="timeline-meta">
+        <span class="timeline-company">Trust Fintech Ltd</span>
+        <span class="timeline-period">Jan 2025 – Present</span>
       </div>
+      <div class="timeline-role">Software Engineer Intern</div>
+      <ul class="timeline-bullets">
+        <li>Built a voice-based UPI application for secure digital payments for visually impaired users.</li>
+        <li>Designed accessible Braille-inspired XML layouts with voice command features on Android.</li>
+        <li>Integrated REST APIs for authentication, transaction processing, and real-time data handling.</li>
+        <li>Conducted accessibility testing using screen readers and low-vision simulators.</li>
+      </ul>
     </div>
-
+ 
     <div class="timeline-item fade-up">
-      <div class="timeline-period">Aug 2023 — Jun 2024</div>
-      <div>
-        <div class="timeline-company">AsthaTech</div>
-        <div class="timeline-role">Embedded Programmer Intern</div>
-        <ul class="timeline-bullets">
-          <li>Designed and implemented a 2-axis robotic arm using servo motors.</li>
-          <li>Programmed Arduino microcontrollers using Embedded C for motion control automation.</li>
-          <li>Calibrated strain gauge sensors to develop an accurate weight measurement system.</li>
-        </ul>
+      <div class="timeline-meta">
+        <span class="timeline-company">AsthaTech</span>
+        <span class="timeline-period">Aug 2023 – Jun 2024</span>
       </div>
+      <div class="timeline-role">Embedded Programmer Intern</div>
+      <ul class="timeline-bullets">
+        <li>Designed and implemented a 2-axis robotic arm using servo motors.</li>
+        <li>Programmed Arduino microcontrollers using Embedded C for motion control automation.</li>
+        <li>Calibrated strain gauge sensors to develop an accurate weight measurement system.</li>
+      </ul>
     </div>
-
+ 
   </div>
 </section>
-
-<!-- PROJECTS -->
+ 
 <section id="projects">
-  <div class="section-head">
-    <h2>Selected projects</h2>
-    <div class="section-label">// 2024 — 2026</div>
-  </div>
+  <div class="section-label">Work</div>
+  <h2>Deep Dive Projects</h2>
   <div class="projects-grid">
-
+ 
     <div class="project-card project-card--featured fade-up">
       <div class="featured-badge">Full-stack · Live in production</div>
-      <div class="project-top-row">
-        <div class="project-title">PayVault — Digital Wallet &amp; Payment API</div>
-        <div class="project-period">Jan 2026 — Jun 2026</div>
-      </div>
-      <div class="project-desc">A production-grade digital wallet built end to end. Node.js/Express/MongoDB API with JWT auth, atomic peer-to-peer transfers via MongoDB sessions, OTP verification for high-value transactions, rate limiting, and Swagger docs — paired with a React frontend for balance tracking, transfers, and transaction history. Deployed live on Render and Vercel.</div>
+      <div class="project-num">01</div>
+      <div class="project-title">PayVault — Digital Wallet &amp; Payment API</div>
+      <div class="project-period">Jan 2026 — Jun 2026</div>
+      <div class="project-desc">A production-grade digital wallet engineered end to end. Built with a Node.js/Express/MongoDB backend architecture enforcing JWT authentication, rate limiting, and database-level sessions for atomic transaction integrity. Paired with a functional React frontend interface tracking balance hooks and real-time ledger updates. Hosted with public live documentation hooks.</div>
       <div class="project-links">
         <a href="https://github.com/Mitesh4123/payvault" target="_blank" rel="noopener" class="project-link">⌥ API repo</a>
         <a href="https://github.com/Mitesh4123/payvault-ui" target="_blank" rel="noopener" class="project-link">⌥ UI repo</a>
@@ -616,12 +619,11 @@
         <span class="project-tag">Swagger</span>
       </div>
     </div>
-
+ 
     <div class="project-card fade-up">
-      <div class="project-top-row">
-        <div class="project-title">UPI Payment App for Visually Impaired Users</div>
-        <div class="project-period">Feb — May 2025</div>
-      </div>
+      <div class="project-num">02</div>
+      <div class="project-title">UPI Payment App for Visually Impaired Users</div>
+      <div class="project-period">Feb 2025 – May 2025</div>
       <div class="project-desc">Accessibility-focused mobile app featuring a custom Braille keyboard module, voice-based authentication, text-to-speech feedback, and gesture-based navigation for secure digital transactions. Published as peer-reviewed research.</div>
       <div class="project-links">
         <a href="https://github.com/Mitesh4123/vipayee" target="_blank" rel="noopener" class="project-link">⌥ View repo</a>
@@ -630,61 +632,55 @@
         <span class="project-tag">Android Studio</span>
         <span class="project-tag">Java</span>
         <span class="project-tag">A11y</span>
+        <span class="project-tag">XML</span>
       </div>
     </div>
-
+ 
     <div class="project-card fade-up">
-      <div class="project-top-row">
-        <div class="project-title">WhatsApp Banking Automation System</div>
-        <div class="project-period">Sep — Dec 2024</div>
-      </div>
-      <div class="project-desc">Core-banking integration middleware using the WhatsApp Cloud API and ASP.NET Core. Automated KYC validation and balance inquiries via webhook-driven RESTful APIs, secured with token verification.</div>
+      <div class="project-num">03</div>
+      <div class="project-title">WhatsApp Banking Automation System</div>
+      <div class="project-period">Sep 2024 – Dec 2024</div>
+      <div class="project-desc">Core-banking integration middleware leveraging the WhatsApp Cloud API and ASP.NET Core. Automated KYC validation and real-time ledger balance requests, secured with token verification webhooks.</div>
       <div class="project-tags">
         <span class="project-tag">ASP.NET Core</span>
         <span class="project-tag">MSSQL</span>
         <span class="project-tag">Webhooks</span>
+        <span class="project-tag">REST APIs</span>
       </div>
     </div>
-
+ 
     <div class="project-card fade-up">
-      <div class="project-top-row">
-        <div class="project-title">ONDC Buyer Application Workflow</div>
-        <div class="project-period">Mar — Apr 2026</div>
-      </div>
-      <div class="project-desc">Order lifecycle workflow handling complete ONDC commerce flows — search, select, init, confirm, cancel — with Postman scripts for transaction and environment testing, and real-time order tracking.</div>
+      <div class="project-num">04</div>
+      <div class="project-title">ONDC Buyer Application Workflow</div>
+      <div class="project-period">Mar 2026 – Apr 2026</div>
+      <div class="project-desc">Order lifecycle microservice architecture handling absolute ONDC transactional flows — search, select, init, confirm, cancel. Integrated complex dynamic JSON schemas and functional postman assertions.</div>
       <div class="project-tags">
         <span class="project-tag">REST APIs</span>
         <span class="project-tag">Postman</span>
         <span class="project-tag">ONDC</span>
       </div>
     </div>
-
+ 
   </div>
 </section>
-
-<!-- PUBLICATION -->
+ 
 <section id="publication">
-  <div class="section-head">
-    <h2>Publication</h2>
-    <div class="section-label">// research</div>
-  </div>
+  <div class="section-label">Research</div>
+  <h2>Publication</h2>
   <div class="pub-card fade-up">
     <div class="pub-journal">International Journal on Advanced Computer Engineering and Communication Technology · Vol. 14, Issue 3S · 2025</div>
     <div class="pub-title">Secure and Assistive UPI Transaction System for Visually Impaired People</div>
-    <div class="pub-meta">DOI: <a href="https://doi.org/10.65521/ijacect.v14i3s.1594" target="_blank" rel="noopener">10.65521/ijacect.v14i3s.1594</a></div>
+    <div class="pub-meta">DOI Link: <a href="https://doi.org/10.65521/ijacect.v14i3s.1594" target="_blank" rel="noopener">10.65521/ijacect.v14i3s.1594</a></div>
   </div>
 </section>
-
-<!-- EDUCATION -->
+ 
 <section id="education">
-  <div class="section-head">
-    <h2>Education</h2>
-    <div class="section-label">// background</div>
-  </div>
+  <div class="section-label">Background</div>
+  <h2>Education</h2>
   <div class="edu-grid fade-up">
     <div class="edu-card">
       <div>
-        <div class="edu-degree">B.TECH — INFORMATION TECHNOLOGY</div>
+        <div class="edu-degree">B.Tech — Information Technology</div>
         <div class="edu-school">St. Vincent Pallotti College of Engineering and Technology, Nagpur</div>
         <div class="edu-year">2022 – 2026</div>
       </div>
@@ -692,55 +688,55 @@
     </div>
     <div class="edu-card">
       <div>
-        <div class="edu-degree">HIGHER SECONDARY (12TH)</div>
+        <div class="edu-degree">Higher Secondary (12th)</div>
         <div class="edu-school">Shree Swaminarayan Gurukul International School, Hyderabad</div>
         <div class="edu-year">2022</div>
       </div>
-      <div class="edu-score">82.8<span>PERCENT</span></div>
+      <div class="edu-score">82.8%<span>PERCENT</span></div>
     </div>
     <div class="edu-card">
       <div>
-        <div class="edu-degree">SECONDARY (10TH)</div>
+        <div class="edu-degree">Secondary (10th)</div>
         <div class="edu-school">Shree Swaminarayan Gurukul International School, Nagpur</div>
         <div class="edu-year">2020</div>
       </div>
-      <div class="edu-score">82.0<span>PERCENT</span></div>
+      <div class="edu-score">82.0%<span>PERCENT</span></div>
     </div>
   </div>
 </section>
-
-<!-- CERTS & LEADERSHIP -->
+ 
 <section id="extras">
-  <div class="section-head">
-    <h2>Certifications &amp; leadership</h2>
-    <div class="section-label">// more</div>
-  </div>
+  <div class="section-label">More</div>
+  <h2>Certifications &amp; Leadership</h2>
   <div class="certs-grid fade-up">
     <div class="cert-card"><span class="cert-dot"></span>NPTEL: Programming in Java</div>
     <div class="cert-card"><span class="cert-dot"></span>NPTEL: Deep Learning</div>
     <div class="cert-card"><span class="cert-dot"></span>C Programming</div>
     <div class="cert-card"><span class="cert-dot"></span>C++ Programming</div>
-    <div class="cert-card"><span class="cert-dot"></span>Technex 2025 — Co-Head of Documentation</div>
+    <div class="cert-card" style="border-color: rgba(251,146,60,0.3);">
+      <span style="width:6px;height:6px;background:var(--accent4);border-radius:50%;flex-shrink:0"></span>
+      Technex 2025 — Co-Head of Documentation
+    </div>
   </div>
 </section>
-
-<!-- CONTACT -->
+ 
 <section id="contact">
-  <div class="section-label">// let's connect</div>
+  <div class="orb3"></div>
+  <div class="section-label">Let's connect</div>
   <h2>Have a project or opportunity?<br>Let's talk.</h2>
   <p>Open to internships, full-time roles, and freelance collaborations.</p>
   <div class="contact-links">
     <a href="mailto:miteshthummar2004@gmail.com" class="contact-link contact-link--primary">✉ miteshthummar2004@gmail.com</a>
-    <a href="tel:+917620176799" class="contact-link">☎ +91-7620176799</a>
-    <a href="https://www.linkedin.com/in/mitesh-thummar-840827262/" target="_blank" rel="noopener" class="contact-link">in/ LinkedIn</a>
+    <a href="tel:+917620176799" class="contact-link">📱 +91-7620176799</a>
+    <a href="https://www.linkedin.com/in/mitesh-thummar-840827262/" target="_blank" rel="noopener" class="contact-link">in LinkedIn</a>
     <a href="https://github.com/Mitesh4123" target="_blank" rel="noopener" class="contact-link">⌥ GitHub</a>
   </div>
 </section>
-
+ 
 <footer>
-  designed &amp; built by Mitesh Thummar · 2026
+  Designed &amp; built by Mitesh Thummar &nbsp;·&nbsp; 2026
 </footer>
-
+ 
 <script>
   const observer = new IntersectionObserver(
     entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),

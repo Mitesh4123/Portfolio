@@ -526,36 +526,6 @@
         <span class="project-tag">JWT</span>
         <span class="project-tag">Swagger</span>
       </div>
-
-      <!-- Live Interactive Sub-Component: Fintech Architectural Simulator -->
-      <div class="sandbox-container">
-        <div class="sandbox-header">
-          PayVault Sandbox <span>Interactive Core Core Logic Sim</span>
-        </div>
-        <div class="sandbox-grid">
-          <div class="control-group">
-            <div class="control-item">
-              <label>Concurrency load <span>Requests/s</span></label>
-              <input type="range" id="loadRange" min="5" max="150" value="25" oninput="updateSimStats()">
-            </div>
-            <div class="control-item">
-              <label>Database Session Isolation</label>
-              <select id="isolationSelect" style="background:#15151e; color:var(--text); border:1px solid var(--border); border-radius:4px; padding:0.25rem; font-family:var(--mono); font-size:0.7rem; width:100%;" onchange="updateSimStats()">
-                <option value="atomic">Atomic Transaction (Session Mapped)</option>
-                <option value="loose">Loose Updates (Race Condition Prone)</option>
-              </select>
-            </div>
-            <button class="action-btn" onclick="executeSimTransaction()">Run Transfer Test</button>
-          </div>
-          <div class="visualizer" id="simConsole">
-            <div>
-              <div class="log-line">// Engine initialized. Ready for payment payload...</div>
-              <div class="log-line" id="statLog">Current load config: 25 req/sec.</div>
-            </div>
-            <div id="runtimeLog" style="border-top:1px solid var(--border); padding-top:0.5rem; margin-top:0.5rem; min-height:60px;"></div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="project-card fade-up">
